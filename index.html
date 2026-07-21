@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BetterHealth</title>
+  <style>
+    html,body{margin:0;min-height:100%;background:#e9e5d8;color:#14201e}
+    body{display:grid;place-items:center;font-family:Georgia,serif}
+    .loading{padding:2rem;text-align:center;max-width:34rem}
+  </style>
+</head>
+<body>
+  <div class="loading" id="status">Loading BetterHealth…</div>
+  <script>
+    (async () => {
+      try {
+        const files = ['payload/0.txt','payload/1.txt','payload/2.txt','payload/3.txt','payload/4.txt'];
+        const parts = await Promise.all(files.map(async file => {
+          const response = await fetch(file, {cache:'no-store'});
+          if (!response.ok) throw new Error(`Could not load ${file}`);
+          return response.text();
+        }));
+        const bytes = Uint8Array.from(atob(parts.join('')), character => character.charCodeAt(0));
+        const stream = new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'));
+        const html = await new Response(stream).text();
+        document.open();
+        document.write(html);
+        document.close();
+      } catch (error) {
+        document.getElementById('status').innerHTML = '<strong>The site could not load.</strong><br>Use a current version of Chrome, Edge, Safari or Firefox.';
+        console.error(error);
+      }
+    })();
+  </script>
+</body>
+</html>
