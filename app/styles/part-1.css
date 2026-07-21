@@ -1,0 +1,77 @@
+  /* Hero / signature plate */
+  .hero{padding:56px 0 var(--s7);background-image:var(--grid);background-size:34px 34px}
+  .hero-head{display:grid;grid-template-columns:1.05fr .95fr;gap:var(--s5);align-items:end;margin-bottom:var(--s5)}
+  .hero h1{font-size:clamp(38px,5.4vw,72px);font-weight:300;line-height:1.02}
+  .hero h1 em{font-style:italic;color:var(--copper-deep);font-weight:500}
+  .hero .lede{font-size:19px;color:var(--ink-soft);max-width:48ch;margin-top:0}
+  .hero-actions{margin-top:var(--s3);display:flex;gap:12px;flex-wrap:wrap}
+  @media(max-width:900px){.hero-head{grid-template-columns:1fr;gap:var(--s3)}}
+
+  .plate{border:1px solid rgba(20,32,30,.24);background:var(--porcelain-3);position:relative}
+  .plate-bar{display:flex;justify-content:space-between;align-items:center;padding:12px 18px;border-bottom:1px solid rgba(20,32,30,.16);font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--slate)}
+  .plate-bar b{color:var(--ink);font-weight:600}
+  .peb{padding:8px 8px 0}
+  .peb svg{display:block;width:100%;height:auto}
+  .peb-foot{display:flex;flex-wrap:wrap;gap:18px 26px;align-items:center;padding:14px 18px 16px;border-top:1px solid rgba(20,32,30,.12)}
+  .legend{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--ink-soft)}
+  .legend i{width:16px;height:0;border-top:2px solid var(--ink);display:inline-block}
+  .legend i.supply{border-top-color:var(--copper)}
+  .legend i.deficit{height:11px;border:0;width:16px;background:repeating-linear-gradient(45deg,rgba(190,110,56,.55) 0 3px,transparent 3px 6px)}
+  .peb-readout{margin-left:auto;text-align:right}
+  .peb-readout .rv{font-family:var(--serif);font-size:30px;color:var(--copper-deep);line-height:1}
+  .peb-readout .rk{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);margin-top:3px}
+  .peb-ctrl{display:flex;gap:0;border:1px solid rgba(20,32,30,.2);margin:0 18px 18px;overflow:hidden}
+  .peb-ctrl button{flex:1;min-height:44px;border:0;border-right:1px solid rgba(20,32,30,.2);background:transparent;font-family:var(--mono);font-size:11.5px;letter-spacing:.03em;color:var(--slate);cursor:pointer;padding:8px 6px;transition:.18s}
+  .peb-ctrl button:last-child{border-right:0}
+  .peb-ctrl button[aria-pressed="true"]{background:var(--petrol);color:var(--porcelain)}
+  .peb-note{font-family:var(--mono);font-size:10.5px;color:var(--slate);letter-spacing:.02em;padding:0 18px 16px;margin-top:-4px}
+
+  /* Thesis strip */
+  .thesis{border-top:1px solid rgba(20,32,30,.14);border-bottom:1px solid rgba(20,32,30,.14)}
+  .thesis .wrap{display:grid;grid-template-columns:180px 1fr;gap:var(--s5);padding-top:var(--s6);padding-bottom:var(--s6)}
+  .thesis .cap{padding-top:8px}
+  .thesis p{font-size:23px;line-height:1.5;margin:0;max-width:40ch;color:var(--ink)}
+  .thesis p+p{margin-top:var(--s3);font-size:17px;color:var(--ink-soft);max-width:56ch}
+  @media(max-width:820px){.thesis .wrap{grid-template-columns:1fr;gap:var(--s2)}}
+
+  /* Specimen plates: biomarkers + qEEG */
+  .measure .head{max-width:60ch;margin-bottom:var(--s5)}
+  .measure h2{font-size:clamp(28px,3.6vw,44px);font-weight:300;margin-top:12px}
+  .measure .sub{color:var(--ink-soft);margin-top:14px;font-size:17px}
+  .platepair{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  @media(max-width:900px){.platepair{grid-template-columns:1fr}}
+  .specimen{padding:22px}
+  .specimen .dn{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);margin:16px 0 8px}
+  .specimen .dn:first-of-type{margin-top:4px}
+  .marks{display:flex;flex-wrap:wrap;gap:6px}
+  .mk{font-family:var(--mono);font-size:11.5px;padding:5px 11px;border:1px solid rgba(20,32,30,.2);color:var(--ink-soft);background:var(--porcelain)}
+  .specimen h3{font-size:21px;margin:6px 0 2px}
+  .specimen .lead{font-size:14.5px;color:var(--ink-soft);line-height:1.55;margin:8px 0 16px}
+  .eegcanvas{background:var(--petrol);padding:20px;margin-top:2px}
+  .eegcanvas svg{display:block;width:100%;height:auto}
+  .eegrow{display:flex;gap:12px;margin-top:14px}
+  .eegrow div{flex:1;border-top:1px solid var(--petrol-line);padding-top:9px;font-family:var(--mono);font-size:10.5px;letter-spacing:.02em;color:var(--slate-light)}
+  .eegrow b{display:block;color:var(--copper-bright);font-size:12.5px;margin-bottom:3px;letter-spacing:.06em}
+
+  /* Method (sequence) on petrol */
+  .method{background:var(--petrol);color:var(--porcelain);background-image:linear-gradient(rgba(233,229,216,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(233,229,216,.03) 1px,transparent 1px);background-size:34px 34px}
+  .method .cap{color:var(--copper-bright)}
+  .method h2{color:var(--porcelain);font-size:clamp(28px,3.6vw,44px);font-weight:300;margin-top:12px;max-width:20ch}
+  .method .intro{color:var(--slate-light);max-width:56ch;margin-top:16px;font-size:16px}
+  .seq{margin-top:var(--s6);border-top:1px solid var(--petrol-line)}
+  .seqrow{display:grid;grid-template-columns:90px 1fr 2fr;gap:var(--s4);padding:var(--s4) 0;border-bottom:1px solid var(--petrol-line);align-items:baseline}
+  .seqrow .idx{font-family:var(--mono);font-size:13px;color:var(--copper-bright);letter-spacing:.1em}
+  .seqrow h3{color:var(--porcelain);font-size:24px}
+  .seqrow p{color:var(--slate-light);font-size:15px;line-height:1.6;margin:0}
+  @media(max-width:820px){.seqrow{grid-template-columns:1fr;gap:8px;padding:var(--s3) 0}}
+
+  /* Nutrition routing */
+  .nutri .wrap{display:grid;grid-template-columns:1fr 1fr;gap:var(--s5);align-items:center}
+  .nutri h2{font-size:clamp(26px,3.4vw,40px);font-weight:300;margin-top:12px;max-width:15ch}
+  .nutri p.body{color:var(--ink-soft);margin-top:18px;font-size:16.5px}
+  .nutri .btn{margin-top:var(--s3)}
+  .route{border-left:2px solid var(--copper);padding:2px 0 2px 18px;margin-bottom:16px}
+  .route .rt{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--copper-deep);margin-bottom:5px}
+  .route .rd{font-size:14.5px;color:var(--ink-soft);line-height:1.55}
+  @media(max-width:820px){.nutri .wrap{grid-template-columns:1fr}}
+
