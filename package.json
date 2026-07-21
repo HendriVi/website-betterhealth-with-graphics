@@ -1,0 +1,38 @@
+{
+  "name": "betterhealth-with-graphics",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "assets": "node scripts/generate-assets.mjs",
+    "build": "npm run assets && next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "storybook": "npm --prefix storybook install --no-audit --no-fund && npm --prefix storybook run storybook",
+    "build-storybook": "npm --prefix storybook install --no-audit --no-fund && npm --prefix storybook run build-storybook",
+    "lhci": "npx --yes @lhci/cli@0.15.1 autorun --config=./lighthouserc.cjs"
+  },
+  "dependencies": {
+    "@radix-ui/react-slot": "1.2.4",
+    "class-variance-authority": "0.7.1",
+    "clsx": "2.1.1",
+    "next": "16.2.6",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "sharp": "0.35.3",
+    "tailwind-merge": "3.3.1",
+    "web-vitals": "5.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "24.0.13",
+    "@types/react": "19.1.8",
+    "@types/react-dom": "19.1.6",
+    "eslint": "9.31.0",
+    "eslint-config-next": "16.2.6",
+    "typescript": "5.8.3"
+  }
+}
