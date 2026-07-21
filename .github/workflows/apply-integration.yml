@@ -1,0 +1,75 @@
+name: Apply BetterHealth integration
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - ".integration/ready"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "betterhealth-integration"
+  cancel-in-progress: false
+
+jobs:
+  apply:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout current repository
+        uses: actions/checkout@v4
+
+      - name: Reconstruct validated project
+        run: |
+          cat .integration/payload/*.txt | tr -d '\n' | base64 --decode > /tmp/betterhealth-project.tar.gz
+          find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          tar -xzf /tmp/betterhealth-project.tar.gz -C .
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Type-check
+        run: npm run typecheck
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build GitHub Pages export
+        env:
+          NEXT_PUBLIC_BASE_PATH: /website-betterhealth-with-graphics
+          NEXT_TELEMETRY_DISABLED: 1
+        run: npm run build
+
+      - name: Commit migration
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m "Integrate Next.js performance and quality stack"
+            git push
+          fi
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload site
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: ./out
+
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
