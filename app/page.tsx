@@ -1,10 +1,17 @@
-import { readFileSync } from "node:fs";
+import { readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { gunzipSync } from "node:zlib";
 import { SiteClient } from "@/components/site-client";
 
 function extractSiteSource() {
-  const encoded = readFileSync(path.join(process.cwd(), "content", "betterhealth.html.gz.b64"), "utf8").trim();
+  const contentDirectory = path.join(process.cwd(), "content");
+  const encoded = readdirSync(contentDirectory)
+    .filter((name) => name.endsWith(".b64part"))
+    .sort()
+    .map((name) => readFileSync(path.join(contentDirectory, name), "utf8"))
+    .join("")
+    .trim();
+
   const source = gunzipSync(Buffer.from(encoded, "base64")).toString("utf8");
   const body = source.match(/<body>([\s\S]*?)<script>/)?.[1]?.trim();
   const script = source.match(/<script>([\s\S]*?)<\/script>/)?.[1]?.trim();
