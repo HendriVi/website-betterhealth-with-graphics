@@ -1,0 +1,65 @@
+/* ============================================================
+     Hallmark · macrostructure: INSTRUMENT LEDGER (Custom)
+     theme: Clinical Instrument — petrol housing / porcelain paper / copper as sole data signal
+     type-pairing: Spectral (display + body) × IBM Plex Mono (labels + measurement)
+     anchor hue: petrol · accent: copper, held under ~5% of surface, data-only
+     enrichment: Tier-A inline SVG — interactive Predictive Energy Budget plate
+     nav archetype: instrument masthead (registry strip + numbered index), not the default bar
+     motion: exponential ease-out, reduced-motion honored
+     ============================================================ */
+  :root{
+    /* OKLCH palette — one anchor hue (petrol), copper accent stays sparse */
+    --petrol:oklch(0.225 0.022 190.6); --petrol-2:oklch(0.263 0.028 199.4); --petrol-line:rgba(233,229,216,.14);
+    --porcelain:oklch(0.921 0.018 92.7); --porcelain-2:oklch(0.888 0.021 91.6); --porcelain-3:oklch(0.949 0.014 93.0);
+    --ink:oklch(0.231 0.017 183.3); --ink-soft:oklch(0.381 0.020 159.7);
+    --slate:oklch(0.513 0.022 162.3); --slate-light:oklch(0.716 0.018 156.8);
+    --copper:oklch(0.617 0.122 52.4); --copper-bright:oklch(0.689 0.125 54.2); --copper-deep:oklch(0.523 0.108 50.3);
+    --ease-expo:cubic-bezier(.16,1,.3,1);
+    --maxw:1200px;
+    --serif:"Spectral",Georgia,serif;
+    --mono:"IBM Plex Mono",ui-monospace,monospace;
+    --s1:8px; --s2:16px; --s3:24px; --s4:32px; --s5:48px; --s6:64px; --s7:96px;
+    --grid:linear-gradient(rgba(20,32,30,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(20,32,30,.045) 1px,transparent 1px);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--porcelain);color:var(--ink);font-family:var(--serif);font-size:18px;line-height:1.62;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  h1,h2,h3{margin:0;font-family:var(--serif);font-weight:400;letter-spacing:-.015em;line-height:1.08}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  .section{padding:var(--s7) 0;position:relative}
+  .cap{font-family:var(--mono);font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--copper-deep);font-weight:500}
+  .mono{font-family:var(--mono)}
+  .rule{height:1px;background:rgba(20,32,30,.14)}
+
+  .btn{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:12px 22px;text-decoration:none;font-family:var(--mono);font-size:13px;letter-spacing:.04em;border:1px solid transparent;cursor:pointer;transition:transform .18s ease,background .2s,border-color .2s,color .2s;position:relative}
+  .btn-solid{background:var(--petrol);color:var(--porcelain)}
+  .btn-solid:hover{transform:translateY(-2px)}
+  .btn-solid::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--copper)}
+  .btn-ghost{border-color:rgba(20,32,30,.32);color:var(--ink);background:transparent}
+  .btn-ghost:hover{border-color:var(--ink);transform:translateY(-2px)}
+  .btn-onpetrol{background:var(--porcelain);color:var(--petrol)}
+  .btn-onpetrol:hover{transform:translateY(-2px)}
+  .btn-onpetrol::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--copper)}
+  .btn-ghost-light{border-color:rgba(233,229,216,.4);color:var(--porcelain)}
+  .btn-ghost-light:hover{border-color:var(--porcelain);transform:translateY(-2px)}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(12px);transition:opacity .6s var(--ease-expo),transform .6s var(--ease-expo)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* Nav — instrument masthead (registry strip over a numbered index, not the default bar) */
+  header.nav{position:sticky;top:0;z-index:60;background:color-mix(in oklab,var(--porcelain) 88%,transparent);backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid var(--ink)}
+  .registry{max-width:var(--maxw);margin:0 auto;padding:6px 28px;display:flex;justify-content:space-between;gap:16px;font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--slate);border-bottom:1px solid rgba(20,32,30,.14)}
+  .registry span:last-child{color:var(--copper-deep)}
+  .nav-inner{max-width:var(--maxw);margin:0 auto;padding:12px 28px;display:flex;align-items:baseline;justify-content:space-between;gap:24px}
+  .brand{display:flex;align-items:baseline;gap:12px;text-decoration:none}
+  .brand b{font-family:var(--serif);font-weight:500;font-size:24px;letter-spacing:-.01em}
+  .brand span{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--slate)}
+  .nav-index{display:flex;gap:28px;align-items:baseline;font-family:var(--mono);font-size:12px;letter-spacing:.02em}
+  .nav-index a{text-decoration:none;color:var(--slate);transition:color .2s;display:inline-flex;gap:6px;align-items:baseline}
+  .nav-index a i{color:var(--copper-deep);font-style:normal;font-size:10px}
+  .nav-index a:hover{color:var(--ink)}
+  .nav-index .btn{padding:8px 16px;min-height:0;margin-left:4px}
+  @media(max-width:940px){.registry span:first-child{display:none}.nav-index a:not(.btn){display:none}}
+
